@@ -1,10 +1,10 @@
 const { Router } = require('express');
 const router = Router();
 const productController = require('./controllers/productController');
-const aboutController = require('./controllers/aboutController');
+const homeController = require('./controllers/homeController');
 
-router.use('/', productController);
-router.use('/about', aboutController);
+router.use('/', homeController);
+router.use('/products', productController);
 
 
 //not found
