@@ -8,6 +8,7 @@ const authController = require('./controllers/authController');
 router.use('/', homeController);
 router.use('/products', productController);
 router.use('/accessories', accessoryController);
+
 router.use('/api', authController);
 
 //not found
