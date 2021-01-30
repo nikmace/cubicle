@@ -12,11 +12,6 @@ module.exports = {
     },
 
     create(product) {
-        productsDb.push(product);
-
-        return fs.writeFile(
-            path.join(__dirname, '/../config/products.json'), 
-            JSON.stringify(productsDb)
-        );
+        
     }
 }
