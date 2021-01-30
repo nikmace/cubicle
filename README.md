@@ -7,14 +7,24 @@
 
 ## Getting started
 These instructions will help you to run the project. 
-To start the project in production environment type in the terminal:
+To start the project in **_production_** environment type in the terminal:
 ```
 npm run prod
 ```
-To start project in development environment type in the terminal:
+To start project in **_development_** environment type in the terminal:
 ```
 npm start
 ```
 ## Built With
+- [Express](https://www.npmjs.com/package/express) - Used for routing
+- [Handlebars](https://www.npmjs.com/package/handlebars) - Used for templating
+- [Mongoose](https://www.npmjs.com/package/mongoose) - Used for working with MongoDB
 
-
+## Authors
+- Nikita Baranov - Initial work
+> “Talk is cheap. Show me the code.”
+## License
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/nikmace/cubicle/blob/master/LICENSE) file for details
+## Acknowledgements
+- [SoftUni](https://softuni.bg/)
+- Anyone whose code was used
