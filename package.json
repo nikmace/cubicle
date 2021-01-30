@@ -5,8 +5,8 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "start": "nodemon index.js",
-        "prod": "SET NODE_ENV=production && node index.js"
+        "start": "export NODE_ENV=development && export PORT=5500 && nodemon index.js",
+        "prod": "export NODE_ENV=production && export PORT=80 && node index.js"
     },
     "dependencies": {
         "body-parser": "^1.19.0",
