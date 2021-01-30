@@ -1,5 +1,7 @@
 # Cubicle Web App
 
+A web application made for practice for using Express, Templating and MongoDB as a database.
+
 ![GitHub repo size](https://img.shields.io/github/repo-size/nikmace/cubicle)
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues-raw/nikmace/cubicle?logo=Visual%20Studio)
 ![GitHub](https://img.shields.io/github/license/nikmace/cubicle?color=brightgreen)
