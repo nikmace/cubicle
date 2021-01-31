@@ -22,6 +22,7 @@ npm start
 - [Express](https://www.npmjs.com/package/express) - Used for routing
 - [Handlebars](https://www.npmjs.com/package/handlebars) - Used for templating
 - [Mongoose](https://www.npmjs.com/package/mongoose) - Used for working with MongoDB
+- [JWT](https://www.npmjs.com/package/jwt) - Used for getting auth token
 
 ## Authors
 - Nikita Baranov - Initial work

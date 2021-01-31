@@ -2,6 +2,7 @@ const { Router } = require('express');
 const authService = require('../services/authService');
 const { validateRegisterInput } = require('../controllers/helpers/validateRegister');
 const { verifyToken } = require('../controllers/helpers/verifyToken');
+const { sessionChecker } = require('../controllers/helpers/sessionHelper');
 
 const router = Router();
 
