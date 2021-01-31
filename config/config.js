@@ -1,3 +1,5 @@
+require('dotenv/config');
+
 const config = {
     development: {
         PORT: 5500,
@@ -5,7 +7,7 @@ const config = {
     },
     production: {
         PORT: 80,
-        DB_CONNECTION: 'mongodb+srv://nikita:LISRx6r5@cubicles.gyjy6.mongodb.net/cubicle?retryWrites=true&w=majority',
+        DB_CONNECTION: process.env.DB_CONNECTION_URI,
     }
 };
 

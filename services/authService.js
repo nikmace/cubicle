@@ -1,9 +1,10 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+require('dotenv/config');
+
 
 async function register(req, res) {
-    console.log(req.body)
     //Check if user is already in database
     const emailExists = await User.findOne({ email: req.body.email });
     if (emailExists) {
@@ -30,24 +31,23 @@ async function register(req, res) {
 
 async function login(req, res) {
     //Check if email exists
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ email: req.body.email }).lean();
     if (!user) {
-        console.warn('Email doesn\'t exist!');
-        res.status(400);
+        res.status(400).send('Email doesn\'t exist!');
     }
-
+    console.log(user);
+    
     //Check if password is correct
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     if (!validPassword) {
-        console.warn('Invalid password!');
-        res.status(400);
+        res.status(400).send('Invalid password!');
     }
 
     //Create and assign a token
-    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET_KEY);
+    const token = jwt.sign(user, process.env.TOKEN_SECRET_KEY);
     console.log(token);
     
-    res.header('auth-token', token).send(token);
+    return res.json({token: token});
 }
 
 
