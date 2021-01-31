@@ -10,5 +10,6 @@ require('./config/mongoose')(app);
 
 //Routing
 app.use(routes);
+app.use(express.json());
 
 app.listen(config.PORT, console.log(`Server is running on port ${config.PORT}..`));

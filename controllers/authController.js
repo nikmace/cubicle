@@ -19,10 +19,10 @@ router.get('/login', (req, res) => {
     res.render('login', {title: 'Login'});
 });
 
-router.post('/login', verifyToken, (req, res) => {
+router.post('/login', (req, res) => {
     authService.login(req, res)
         .then(() => res.redirect('/products'))
-        .catch(() => res.status(500).end());
+        .catch(() => res.status(500).end());    
 });
 
 module.exports = router;

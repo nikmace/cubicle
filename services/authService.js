@@ -2,6 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv/config');
+const { verifyToken } = require('../controllers/helpers/verifyToken');
 
 
 async function register(req, res) {
@@ -31,23 +32,22 @@ async function register(req, res) {
 
 async function login(req, res) {
     //Check if email exists
-    const user = await User.findOne({ email: req.body.email }).lean();
+    const user = await User.findOne({ email: req.body.email });
     if (!user) {
         res.status(400).send('Email doesn\'t exist!');
     }
-    console.log(user);
     
     //Check if password is correct
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     if (!validPassword) {
         res.status(400).send('Invalid password!');
     }
-
-    //Create and assign a token
-    const token = jwt.sign(user, process.env.TOKEN_SECRET_KEY);
-    console.log(token);
     
-    return res.json({token: token});
+    //JWT Token
+    //Create and assign a token
+    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET_KEY);
+    res.setHeader('Authorization', 'Bearer ' + token);
+    return user;
 }
 
 
