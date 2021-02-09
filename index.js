@@ -13,26 +13,17 @@ const app = express();
 require('./config/express')(app);
 require('./config/mongoose')(app);
 
+//CookieParser: to allow the cookies to be stored in the browser
+app.use(cookieParser());
+//BodyParser: to parse request
+app.use(bodyParser.urlencoded({ extended:true }));
+
 //Routing
 app.use(routes);
 app.use(express.json());
 
 //Morgan: to log info about requests for developemnt use
 app.use(morgan('dev'));
-//BodyParser: to parse request
-app.use(bodyParser.urlencoded({ extended:true }));
-//CookieParser: to allow the cookies to be stored in the browser
-app.use(cookieParser());
 
-//Express-session: to track logged in user through sessions
-app.use(session({
-    key: 'user_sid',
-    secret: 'somerandomstuff',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        expires: 600000,
-    },
-}))
 
 app.listen(config.PORT, console.log(`Server is running on port ${config.PORT}..`));

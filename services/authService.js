@@ -47,6 +47,10 @@ async function login(req, res) {
     //Create and assign a token
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET_KEY);
     res.setHeader('Authorization', 'Bearer ' + token);
+    res.cookie('token', token, {
+        expires: new Date(Date.now() + 900000),
+        httpOnly: true,
+    });
     return user;
 }
 
