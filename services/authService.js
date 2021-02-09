@@ -2,7 +2,6 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv/config');
-const { verifyToken } = require('../controllers/helpers/verifyToken');
 
 
 async function register(req, res) {
@@ -45,7 +44,7 @@ async function login(req, res) {
     
     //JWT Token
     //Create and assign a token
-    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET_KEY);
+    const token = jwt.sign({_id: user._id, email: user.email, roles: ['admin']}, process.env.TOKEN_SECRET_KEY);
     res.setHeader('Authorization', 'Bearer ' + token);
     res.cookie('token', token, {
         expires: new Date(Date.now() + 900000),

@@ -1,8 +1,6 @@
 const { Router } = require('express');
 const authService = require('../services/authService');
 const { validateRegisterInput } = require('../controllers/helpers/validateRegister');
-const { verifyToken } = require('../controllers/helpers/verifyToken');
-const { sessionChecker } = require('../controllers/helpers/sessionHelper');
 
 const router = Router();
 
@@ -24,6 +22,11 @@ router.post('/login', (req, res) => {
     authService.login(req, res)
         .then(() => res.redirect('/products'))
         .catch(() => res.status(500).end());    
+});
+
+router.get('/logout', (req, res) => {
+    res.clearCookie('token');
+    res.redirect('/products');
 });
 
 module.exports = router;

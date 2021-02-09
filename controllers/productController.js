@@ -2,16 +2,16 @@ const { Router } = require('express');
 const productService = require('../services/productService');
 const accessoryService = require('../services/accessoryService');
 const { validateProduct } = require('../controllers/helpers/productHelpers');
-const {verifyToken } = require('../controllers/helpers/verifyToken');
-const verifyLoggedUser = require('../controllers/helpers/verifyLoggedUser');
+const verifyLoggedUser = require('../middlewares/verifyLoggedUser');
+const isAuthenticated = require('../middlewares/isAuthenticated');
 
 const router = Router();
 
 router.get('/', (req, res) => {   
-    let userVerif = verifyLoggedUser.verify(req, res);
+    //let userVerif = verifyLoggedUser.verify(req, res);
     let products = productService.getAll(req.query)
         .then(products => {
-            res.render('home', {title: 'Browse', products, userVerif });
+            res.render('home', {title: 'Browse', products });
         })
         .catch(() => res.status(500).end());
 
